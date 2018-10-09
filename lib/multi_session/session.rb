@@ -6,7 +6,8 @@ module MultiSession
 
     def [](key)
       return nil unless @cookies[key.to_s].present?
-      ActiveSupport::JSON.decode encryptor(key).decrypt_and_verify(@cookies[key])
+      session = ActiveSupport::JSON.decode encryptor(key).decrypt_and_verify(@cookies[key])
+      session['value'] # TODO: add ability to let developer retrieve the session_id
     end
 
     def []=(key, value)
