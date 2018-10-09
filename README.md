@@ -1,4 +1,9 @@
-# MultiSession
+[![Build Status](https://travis-ci.org/seanhuber/multi_session.svg?branch=master)](https://travis-ci.org/seanhuber/multi_session)
+[![Coverage Status](https://coveralls.io/repos/github/seanhuber/multi_session/badge.svg?branch=master)](https://coveralls.io/github/seanhuber/multi_session?branch=master)
+
+multi_session
+==============
+
 Creates multiple sessions for rails.
 
 ## Usage
