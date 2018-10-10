@@ -63,13 +63,22 @@ gem 'multi_session', '~> 1.0'
 
 ## Configuration
 
-For the current version `multi_session`, the only configuration that can optionally be set is expiration period for `multi_session` cookies/values. This can be done via an initializer, `config/initializers/multi_session.rb`:
+For the current version `multi_session`, the only configuration that can optionally be set is expiration period for `multi_session` cookies/values.
+
+To configure `multi_session`, first generate an initializer using the built-in rails generator:
+
+```
+rails g multi_session:install
+```
+
+Then open and edit `config/initializers/multi_session.rb`:
 
 ```ruby
 # config/initializers/multi_session.rb
 
 MultiSession.setup do |config|
-  config.expires = 30.minutes
+  # Uncomment to force multi_session cookies to expire after a period of time
+  # config.expires = 30.minutes
 end
 ```
 
