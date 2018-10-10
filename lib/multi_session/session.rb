@@ -51,7 +51,7 @@ module MultiSession
       key_generator = ActiveSupport::CachingKeyGenerator.new ActiveSupport::KeyGenerator.new(secret_key_base, iterations: 1000)
       key_len = ActiveSupport::MessageEncryptor.key_len encrypted_cookie_cipher
       salt = 'authenticated encrypted cookie'
-      secret = key_generator.generate_key(salt, key_len)
+      secret = key_generator.generate_key(MultiSession.authenticated_encrypted_cookie_salt, key_len)
 
       ActiveSupport::MessageEncryptor.new secret, cipher: encrypted_cookie_cipher, serializer: ActiveSupport::MessageEncryptor::NullSerializer
     end

@@ -58,12 +58,18 @@ multi_session_keys: # use `rake secret` to generate custom keys
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'multi_session', '~> 1.0'
+gem 'multi_session', '~> 1.1'
 ```
 
 ## Configuration
 
-For the current version `multi_session`, the only configuration that can optionally be set is expiration period for `multi_session` cookies/values.
+For the current version `multi_session`, there these are the configuration values that can optionally be set:
+
+| Config option                         | Type                    | Description                                           |
+|---------------------------------------|-------------------------|-------------------------------------------------------|
+| `expires`                             | ActiveSupport::Duration | expiration  period for `multi_session` cookies/values |
+| `authenticated_encrypted_cookie_salt` | String                  | Salt used to derive key for GCM encryption            |
+
 
 To configure `multi_session`, first generate an initializer using the built-in rails generator:
 
@@ -78,7 +84,10 @@ Then open and edit `config/initializers/multi_session.rb`:
 
 MultiSession.setup do |config|
   # Uncomment to force multi_session cookies to expire after a period of time
-  # config.expires = 30.minutes
+  config.expires = 30.minutes
+
+  # Salt used to derive key for GCM encryption. Default value is 'multi session authenticated encrypted cookie'
+  config.authenticated_encrypted_cookie_salt = 'my multi session salt value'
 end
 ```
 
