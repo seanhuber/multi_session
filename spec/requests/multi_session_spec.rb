@@ -24,4 +24,17 @@ RSpec.describe 'multi_session', type: :request do
     expected_response = session_values.map{|k,v| "#{k}-#{v}"}.join(',')
     expect(response.body).to eq(expected_response)
   end
+
+  it 'can set session cookies as expirable' do
+    expires = 2.days
+    MultiSession.setup do |config|
+      config.expires = expires
+    end
+    get '/encrypt_multi_sessions', params: {session_values: {aaaa: 'alpha'}}
+
+    aaaa_cookie_string = response.headers['Set-Cookie'].split("\n").select{|str| str.include?('aaaa=')}.first
+    expire_string = "expires=#{(Time.zone.now + expires).strftime('%a, %d %b %Y %H')}"
+
+    expect(aaaa_cookie_string).to include(expire_string)
+  end
 end
