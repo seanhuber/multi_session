@@ -35,6 +35,12 @@ module MultiSession
       @cookies.clear
     end
 
+    def update_expiration
+      Rails.application.credentials[:multi_session_keys].each_key do |key|
+        self[key] = self[key] # decrypt and re-encrypt to force expires_at to update
+      end
+    end
+
     private
 
     def encryptor key
