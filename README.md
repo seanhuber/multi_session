@@ -53,13 +53,15 @@ multi_session_keys: # use `rake secret` to generate custom keys
   user_preferences: # insert a different secret here
 ```
 
-## Installation
+## Installation and Requirements
 
 Add this line to your application's Gemfile:
 
 ```ruby
 gem 'multi_session', '~> 1.1'
 ```
+
+Currently `multi_session` will only work with Rails version 5.2.0 or higher. In version 5.2, Rails switched the default session encryption from `aes-256-cbc` to `aes-256-gcm`. This gem has only been coded to work with the `aes-256-gcm` cipher which unfortunately does not work with older versions of `ActiveSupport::MessageEncryptor`.
 
 ## Configuration
 

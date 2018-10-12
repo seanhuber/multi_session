@@ -1,8 +1,8 @@
 PATH
   remote: .
   specs:
-    multi_session (1.1.0)
-      rails (~> 5.2.1)
+    multi_session (1.1.1)
+      rails (>= 5.2.0)
 
 GEM
   remote: https://rubygems.org/
