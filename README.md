@@ -90,6 +90,12 @@ MultiSession.setup do |config|
 
   # Salt used to derive key for GCM encryption. Default value is 'multi session authenticated encrypted cookie'
   config.authenticated_encrypted_cookie_salt = 'my multi session salt value'
+
+  # Specify the strategy by which you are managing credentials in your application
+  # :credentials (default) - uses Rails encrypted credentials stored in credentials.yml.enc via Rails.application.credentials
+  # :secrets - uses Rails secrets specified in secrets.yml via Rails.application.secrets
+  # :creds - uses the [Creds](https://github.com/freeletics/creds) gem via Rails.configuration.creds
+  config.credentials_strategy = :credentials
 end
 ```
 

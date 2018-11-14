@@ -46,10 +46,13 @@ module MultiSession
     private
 
     def multi_session_keys
-      keys = if Rails.application.respond_to? :credentials
-        Rails.application.credentials[:multi_session_keys]
-      else
+      keys = case MultiSession.credentials_strategy.to_sym
+      when :creds
+        Rails.configuration.creds.multi_session_keys!
+      when :secrets
         Rails.application.secrets[:multi_session_keys]
+      else
+        Rails.application.credentials[:multi_session_keys]
       end
       keys.symbolize_keys
     end

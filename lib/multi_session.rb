@@ -9,6 +9,9 @@ module MultiSession
   mattr_accessor :expires
   @@expires = nil
 
+  mattr_accessor :credentials_strategy
+  @@credentials_strategy = :credentials
+
   def self.setup
     yield self
   end
