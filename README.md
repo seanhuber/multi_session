@@ -71,6 +71,7 @@ For the current version `multi_session`, there these are the configuration value
 |---------------------------------------|-------------------------|-------------------------------------------------------|
 | `expires`                             | ActiveSupport::Duration | expiration  period for `multi_session` cookies/values |
 | `authenticated_encrypted_cookie_salt` | String                  | Salt used to derive key for GCM encryption            |
+| 'credentials_strategy'                | String/Symbol           | Strategy for managing credentials.                    |
 
 
 To configure `multi_session`, first generate an initializer using the built-in rails generator:
@@ -95,7 +96,7 @@ MultiSession.setup do |config|
   # :credentials (default) - uses Rails encrypted credentials stored in credentials.yml.enc via Rails.application.credentials
   # :secrets - uses Rails secrets specified in secrets.yml via Rails.application.secrets
   # :creds - uses the [Creds](https://github.com/freeletics/creds) gem via Rails.configuration.creds
-  config.credentials_strategy = :credentials
+  config.credentials_strategy = Rails.application.respond_to?(:credentials) ? :credentials : :secrets
 end
 ```
 
