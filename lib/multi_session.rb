@@ -10,7 +10,7 @@ module MultiSession
   @@expires = nil
 
   mattr_accessor :credentials_strategy
-  @@credentials_strategy = Rails.application.respond_to?(:credentials) ? :credentials : :secrets
+  @@credentials_strategy = nil
 
   def self.setup
     yield self

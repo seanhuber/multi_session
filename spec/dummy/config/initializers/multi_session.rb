@@ -6,5 +6,5 @@ MultiSession.setup do |config|
   # config.authenticated_encrypted_cookie_salt = 'multi session authenticated encrypted cookie'
 
   # Specify the strategy that your rails application is using for managing credentials.
-  config.credentials_strategy = '<%= Rails.application.respond_to?(:credentials) ? :credentials : :secrets %>'
+  config.credentials_strategy = 'credentials'
 end
