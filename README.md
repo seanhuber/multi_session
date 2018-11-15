@@ -97,7 +97,7 @@ MultiSession.setup do |config|
   # 'credentials' (default) - uses Rails encrypted credentials stored in credentials.yml.enc via Rails.application.credentials
   # 'secrets' - uses Rails secrets specified in secrets.yml via Rails.application.secrets
   # 'creds' - uses the [Creds](https://github.com/freeletics/creds) gem via Rails.configuration.creds
-  config.credentials_strategy = Rails.application.respond_to?(:credentials) ? 'credentials' : 'secrets'
+  config.credentials_strategy = 'credentials'
 end
 ```
 
