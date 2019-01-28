@@ -37,4 +37,15 @@ RSpec.describe 'multi_session', type: :request do
 
     expect(aaaa_cookie_string).to include(expire_string)
   end
+
+  it 'can set the domain of session cookies' do
+    domain = '.somedomain.com'
+    MultiSession.setup do |config|
+      config.domain = domain
+    end
+    get '/encrypt_multi_sessions', params: { session_values: { aaaa: 'alpha' }}
+    aaaa_cookie_string = response.headers['Set-Cookie'].split("\n").select{ |str| str.include?('aaaa=')}.first
+    domain_string = "domain=#{domain}"
+    expect(aaaa_cookie_string).to include(domain_string)
+  end
 end
