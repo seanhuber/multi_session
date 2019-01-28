@@ -28,8 +28,10 @@ module MultiSession
       end
 
       raise ActionDispatch::Cookies::CookieOverflow if encrypted_and_signed_value.bytesize > ActionDispatch::Cookies::MAX_COOKIE_SIZE
-
-      @cookies[key.to_s] = {value: encrypted_and_signed_value}.merge(MultiSession.expires.present? ? {expires: MultiSession.expires} : {})
+      multi_session_cookie = { value: encrypted_and_signed_value }
+      multi_session_cookie.merge!({ expires: MultiSession.expires}) if MultiSession.expires.present?
+      multi_session_cookie.merge!({ domain: MultiSession.domain }) if MultiSession.domain.present?
+      @cookies[key.to_s] = multi_session_cookie
       nil
     end
 
