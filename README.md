@@ -70,6 +70,7 @@ For the current version `multi_session`, there these are the configuration value
 | Config option                         | Type                    | Description                                           |
 |---------------------------------------|-------------------------|-------------------------------------------------------|
 | `expires`                             | ActiveSupport::Duration | expiration  period for `multi_session` cookies/values |
+| `domain`                              | String/Symbol/Array     | domain for the `multi_session` cookies                |
 | `authenticated_encrypted_cookie_salt` | String                  | Salt used to derive key for GCM encryption            |
 | `credentials_strategy`                | String/Symbol           | Strategy for managing credentials.                    |
 
@@ -88,6 +89,9 @@ Then open and edit `config/initializers/multi_session.rb`:
 MultiSession.setup do |config|
   # Uncomment to force multi_session cookies to expire after a period of time
   config.expires = 30.minutes
+
+  # Uncomment to change the domain of the multi_session cookies
+  # config.domain = nil
 
   # Salt used to derive key for GCM encryption. Default value is 'multi session authenticated encrypted cookie'
   config.authenticated_encrypted_cookie_salt = 'my multi session salt value'
